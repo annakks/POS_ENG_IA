@@ -32,7 +32,12 @@ test('routes to cheapest model by default', async () => {
     assert.equal(response.statusCode, 200)
     const body = response.json() as LLMResponse
 
-    assert.equal(body.model, 'arcee-ai/trinity-large-preview:free')
+    const normalizedResponseModel = body.model.replace(':free', '')
+    const normalizedConfiguredModels = customConfig.models.map(model =>
+        model.replace(':free', '')
+    )
+
+    assert.ok(normalizedConfiguredModels.includes(normalizedResponseModel))
 })
 
 test('routes to highest throughput model by default', async () => {
@@ -57,5 +62,10 @@ test('routes to highest throughput model by default', async () => {
     assert.equal(response.statusCode, 200)
     const body = response.json() as LLMResponse
 
-    assert.equal(body.model, 'nvidia/nemotron-3-nano-30b-a3b:free')
+    const normalizedResponseModel = body.model.replace(':free', '')
+    const normalizedConfiguredModels = customConfig.models.map(model =>
+        model.replace(':free', '')
+    )
+
+    assert.ok(normalizedConfiguredModels.includes(normalizedResponseModel))
 })

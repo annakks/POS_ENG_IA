@@ -31,7 +31,7 @@ export const config: ModelConfig = {
         'arcee-ai/trinity-large-preview:free',
 
         // top 3 para listagem de throughput
-        'nvidia/nemotron-3-nano-30b-a3b:free',
+        'nvidia/nemotron-3-nano-30b-a3b',
     ],
     temperature: 0.2,
     maxTokens: 100,
